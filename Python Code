@@ -1,0 +1,22 @@
+# Complete the flatlandSpaceStations function below.
+def flatlandSpaceStations(n, c):
+    cities=[]
+    distance=[]
+    for i in range(n):
+        cities.append(0)
+        distance.append(n-1)
+    
+    for i in range(len(c)):
+        cities[c[i]]=1
+    
+    for i in range(n):
+        if(cities[i]==1):
+            distance[i]=0
+        else:
+            for j in range(0,i):
+                if((cities[j]==1)&(abs(j-i)<distance[i])):
+                    distance[i]=abs(j-i)
+            for j in range(i+1,n):
+                if((cities[j]==1)&(abs(j-i)<distance[i])):
+                    distance[i]=abs(j-i)                
+    return (max(distance))        
